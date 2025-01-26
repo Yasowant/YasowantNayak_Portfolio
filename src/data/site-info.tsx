@@ -38,7 +38,7 @@ export const siteInfo: SiteInfo = {
     'Yasowant Nayak is a dedicated Full-Stack Developer with expertise in JavaScript, modern frameworks, and scalable architectures. Specializing in crafting high-performance web applications, Yasowant is passionate about delivering user-focused solutions that merge innovation with functionality.',
   email: 'yasowant1998@gmail.com',
   image: {
-    src: '/og/social.png',
+    src: '/og/mySocial.png',
     alt: 'Yasowant Nayak - Full-Stack Developer Crafting Innovative Web Applications',
   },
   socialLinks: [

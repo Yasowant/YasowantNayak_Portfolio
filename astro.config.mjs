@@ -20,7 +20,7 @@ const siteURL =
 
 // https://astro.build/config
 export default defineConfig({
-  site: siteURL || 'https://shaifarfan.com',
+  site: siteURL || '',
   legacy: {
     collections: true,
   },
