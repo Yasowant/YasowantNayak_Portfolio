@@ -1,0 +1,110 @@
+---
+import Layout from './Layout.astro';
+import Prose from '../components/blog/Prose.astro';
+import type { CollectionEntry } from 'astro:content';
+import { HiOutlineChevronDoubleUp } from 'react-icons/hi';
+
+interface Props {
+  frontmatter: CollectionEntry<'blog'>['data'] & {
+    minutesRead: string;
+  };
+  editLink: string;
+}
+
+const { frontmatter, editLink } = Astro.props;
+import { Image } from 'astro:assets';
+import { formattedPublishDate } from '~/utils/date';
+import { cloudinaryImageResize } from '~/utils/cloudinaryImageResize';
+import Chip from '~/components/chip.astro';
+
+const ogImage = frontmatter.cover
+  ? {
+      src: cloudinaryImageResize({
+        imageUrl: frontmatter.cover,
+        width: 1200,
+        height: 630,
+      }),
+      alt: frontmatter.coverAlt || frontmatter.title,
+    }
+  : undefined;
+---
+
+<Layout
+  pageType="article"
+  title={frontmatter.title}
+  description={frontmatter.description}
+  image={ogImage}
+>
+  <div class="layout-container">
+    <div class="blog-content py-10">
+      <div class="">
+        <h1 class="title-color mb-2 text-3xl font-semibold md:text-4xl">
+          {frontmatter.title}
+        </h1>
+        <p class="mb-2 text-slate-500">
+          📆 {formattedPublishDate(frontmatter.pubDate)}
+        </p>
+      </div>
+      <div class="mt-2 flex flex-wrap gap-2">
+        {frontmatter.tags.map((tag) => <Chip>{tag}</Chip>)}
+      </div>
+      {
+        frontmatter.cover && (
+          <Image
+            src={cloudinaryImageResize({
+              imageUrl: frontmatter.cover,
+              height: 540,
+              width: 1080,
+            })}
+            alt={frontmatter.coverAlt || frontmatter.title}
+            title={frontmatter.coverCredit || frontmatter.title}
+            quality={'high'}
+            loading={'eager'}
+            height={540}
+            width={1080}
+            widths={[720, 1080]}
+            sizes={'(max-width: 768px) 720px, 1080px'}
+            class={
+              'mt-5 aspect-[2/1] min-h-[200px] w-full object-cover object-center'
+            }
+          />
+        )
+      }
+      <div class="mb-10 mt-5 flex justify-between">
+        <div>
+          <p class="text-slate-500">🕝 {frontmatter.minutesRead}</p>
+        </div>
+      </div>
+
+      <Prose>
+        <slot />
+      </Prose>
+    </div>
+  </div>
+</Layout>
+
+<button
+  class="scrollToTopBtn fixed bottom-5 right-5 z-50 hidden cursor-pointer rounded-lg border-0 bg-slate-500 p-2 text-lg text-white dark:bg-blue-950"
+  ><HiOutlineChevronDoubleUp />
+</button>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const scrollToTopBtn = document.querySelector(
+      '.scrollToTopBtn'
+    ) as HTMLElement;
+
+    if (!scrollToTopBtn) return;
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        scrollToTopBtn.style.display = 'block';
+      } else {
+        scrollToTopBtn.style.display = 'none';
+      }
+    });
+
+    scrollToTopBtn?.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>

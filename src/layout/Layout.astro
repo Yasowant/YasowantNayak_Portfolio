@@ -1,0 +1,70 @@
+---
+import BaseHead, {
+  type Props as HeadProps,
+} from '../components/BaseHead.astro';
+import { ClientRouter } from 'astro:transitions';
+import Header from './header/Header.astro';
+import Footer from '~/components/Footer';
+
+// CSS
+import 'nprogress/nprogress.css';
+import '~/styles/global.css';
+import Posthog from '~/components/posthog.astro';
+
+interface Props extends HeadProps {
+  container?: boolean;
+}
+
+const { container, ...head } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead {...head} />
+    <Posthog />
+    <!-- <ViewTransitions fallback="animate" /> -->
+    <ClientRouter />
+  </head>
+  <body>
+    <div
+      class="flex min-h-[100vh] flex-col justify-between bg-white font-inter dark:bg-darkBlue"
+    >
+      <div>
+        <Header transition:persist transition:animate="none" />
+        <div
+          class=`dark:text-dark text-black dark:text-white ${container ? 'layout-container' : ''}`
+        >
+          <slot />
+        </div>
+      </div>
+      <Footer />
+      <style is:global>
+        html {
+          scroll-behavior: smooth;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          html {
+            scroll-behavior: auto;
+          }
+        }
+      </style>
+    </div>
+
+    <script>
+      import NProgress from 'nprogress';
+
+      NProgress.configure({
+        showSpinner: false,
+      });
+
+      document.addEventListener('astro:before-preparation', () => {
+        NProgress.start();
+      });
+
+      document.addEventListener('astro:page-load', () => {
+        NProgress.done();
+      });
+    </script>
+  </body>
+</html>

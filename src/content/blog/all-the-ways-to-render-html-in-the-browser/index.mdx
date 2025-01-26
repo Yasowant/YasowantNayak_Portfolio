@@ -1,0 +1,93 @@
+---
+title: 'All the Ways to Render HTML in the Browser: A Visual Guide'
+pubDate: 2025-01-18
+description: 'Learn all the ways to render HTML in the browser with easy-to-understand diagrams, From MPA to Island Architecture.'
+cover: 'https://res.cloudinary.com/shaifarfan/image/upload/v1737184518/shaifarfan.com/blog/all-the-ways-to-render-html-in-the-browser/cover.png'
+tags: ['SPA', 'MPA']
+---
+
+Generally, there are several techniques for rendering HTML in the browser. These frontend development methods can often feel overwhelming. Therefore, having a visual representation of these methods can be highly beneficial. Below is a list of key techniques for rendering HTML.
+
+1. MPA - (Traditional Multiple Page Application)
+1. Basic SPA - (Single Page Application)
+1. SPA with SSR - (Single Page Application with Server Side Rendering)
+1. SPA-influenced isomorphic (Server Rendered)
+1. MPA influenced split execution (Island/Server Component)
+
+All the diagrams were created by me, based on [Theo’s video](https://youtu.be/Cifkb-ZVps4), with my own improvisations. For a deeper dive into these techniques, I highly recommend watching Theo’s video for detailed explanations
+
+### 1. MPA - (Traditional Multiple Page Application)
+
+![MPA Diagram](https://res.cloudinary.com/shaifarfan/image/upload/v1737121780/shaifarfan.com/blog/all-the-ways-to-render-html-in-the-browser/mpa_aju6ul.png)
+
+**Pros**:
+
+1. Good for SEO, since first load will have complete HTML
+1. Less complexity
+
+**Cons**:
+
+1. No immediate navigation.
+2. HTML file completely generated from the server. So, no CDN benefits here.
+
+### 2. Basic SPA - (Single Page Application)
+
+![SPA Diagram](https://res.cloudinary.com/shaifarfan/image/upload/v1737119784/shaifarfan.com/blog/all-the-ways-to-render-html-in-the-browser/spa_gybomc.png)
+
+**Pros**:
+
+1. You get the immediate navigation on page change.
+
+**Cons**:
+
+1. Initial HTML file will be empty, which not gonna work with SEO.
+1. You need to store the big chunk data on the client side to generate the pages.
+1. The first load can take time because many tasks need to be completed during it
+
+### 3. SPA with SSR - (Single Page Application with Server Side Rendering)
+
+![SPA WITH SSR Diagram](https://res.cloudinary.com/shaifarfan/image/upload/v1737120070/shaifarfan.com/blog/all-the-ways-to-render-html-in-the-browser/spa-with-ssr.png)
+
+**Pros**:
+
+1. You get the immediate navigation on page change.
+2. First load will have full HTML content, which is good for SEO
+3. User will see content faster than traditional SPA way.
+
+**Cons**:
+
+1. You still need to store the big chunk data on the client side to generate the pages.
+2. You can't get the HTML from CDN, since we will generate it from the server.
+
+### 4. SPA-influenced isomorphic (Same code runs differently on client and server)
+
+![SPA isomorphic](https://res.cloudinary.com/shaifarfan/image/upload/v1737119784/shaifarfan.com/blog/all-the-ways-to-render-html-in-the-browser/spa-isomorphic_tbhaqj.png)
+
+**Pros**:
+
+1. You get the immediate navigation on page change.
+2. First load will have full HTML content, which is good for SEO
+3. User will see content faster than traditional SPA way.
+
+**Cons**:
+
+1. You still need to store the big chunk data on the client side to generate the pages.
+1. You can't get the HTML from CDN, since we will generate it from the server.
+
+### 5. MPA influenced split execution (Island/Server Component)
+
+![MPA influenced split execution](https://res.cloudinary.com/shaifarfan/image/upload/v1737119785/shaifarfan.com/blog/all-the-ways-to-render-html-in-the-browser/split-execution_kibtde.png)
+
+**Pros**:
+
+1. You can store the HTML file wherever you want (CDN, S3 etc.)
+2. Less complexity
+
+**Cons**:
+
+1. To get the island content you need wait for the static HTML to get back from the server first.
+
+Thank you for taking the time to explore this guide! I hope the diagrams made understanding these HTML rendering methods easier.
+
+All the diagrams in this post were created using the amazing tool [Excalidraw](https://excalidraw.com/).<br/>
+If you found this content helpful, feel free to share it with others ✨

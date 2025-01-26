@@ -1,0 +1,29 @@
+---
+import { getCollection, render } from 'astro:content';
+import BlogLayout from '../../layout/BlogLayout.astro';
+import { getEditLink } from '~/utils/getEditLink';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.id.split('/')[0] },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, remarkPluginFrontmatter } = await render(entry);
+const editLink = getEditLink(entry.id);
+---
+
+<BlogLayout
+  frontmatter={{
+    ...entry.data,
+    minutesRead: remarkPluginFrontmatter.minutesRead,
+  }}
+  editLink={editLink}
+>
+  <Content />
+</BlogLayout>
+
+<style is:global lang="scss"></style>

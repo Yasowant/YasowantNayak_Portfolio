@@ -1,0 +1,51 @@
+---
+import TopHeader from './TopHeadert.astro';
+import { removeTrailingSlash } from '../../utils/utilFns';
+
+const LINKS = [
+  {
+    name: 'Home',
+    href: '/',
+  },
+  {
+    name: 'Blog',
+    href: '/blog',
+  },
+];
+
+const pathname = removeTrailingSlash(Astro.url.pathname);
+---
+
+<div>
+  <div class="layout-container">
+    <TopHeader />
+    <div class="my-3 flex items-center justify-between">
+      <a
+        href="/"
+        class="text-xl font-semibold text-slate-600 dark:text-slate-400"
+      >
+        Yasowant✨
+      </a>
+      <ul class="flex gap-3">
+        {
+          LINKS.map((link) => {
+            const isActive = pathname
+              ? pathname === link.href || pathname.startsWith(`${link.href}/`)
+              : link.href === '/';
+            return (
+              <li class="text-md link font-medium">
+                <a
+                  href={link.href}
+                  class={`${isActive === true ? 'text-brand-400 dark:text-brand-300' : 'text-slate-500 dark:text-slate-400'}`}
+                >
+                  {link.name}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </div>
+  <div class="layout-border-x"></div>
+</div>

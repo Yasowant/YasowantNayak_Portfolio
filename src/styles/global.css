@@ -1,0 +1,43 @@
+@import url('./tailwind.css');
+/* @import url('./prose.scss'); */
+
+.autolink-header {
+  display: inline-block;
+  cursor: pointer;
+  padding-right: 5px;
+}
+@media only screen and (min-width: 768px) {
+  .autolink-header {
+    position: absolute;
+    left: -0.8em;
+    right: calc(100%);
+    opacity: 0;
+  }
+}
+
+.blog-content :is(h1, h2, h3, h4) {
+  position: relative;
+}
+
+.blog-content :is(h1, h2, h3, h4):hover .autolink-header {
+  opacity: 1;
+}
+
+/* .dark #nprogress { */
+/* --bar-color: #3d5ccb; */
+/* } */
+
+#nprogress {
+  --bar-color: #4168f6;
+}
+
+#nprogress .bar {
+  height: 3px;
+  background: var(--bar-color);
+}
+
+#nprogress .peg {
+  box-shadow:
+    0 0 10px var(--bar-color),
+    0 0 5px var(--bar-color);
+}

@@ -1,0 +1,70 @@
+---
+import SEO from './SEO.astro';
+import { siteInfo, twitterHandle } from '~/data/site-info';
+
+export type Props = {
+  title?: string;
+  description?: string;
+  image?: { src: string; alt: string };
+  canonicalURL?: URL | null;
+  pageType?: 'website' | 'article';
+};
+
+const {
+  description = siteInfo.description,
+  image = siteInfo.image,
+  canonicalURL = new URL(Astro.request.url, Astro.site),
+  pageType = 'website',
+} = Astro.props;
+
+const title =
+  pageType === 'article'
+    ? [Astro.props.title, siteInfo.name].filter(Boolean).join('-')
+    : [siteInfo.name, Astro.props.title || siteInfo.title]
+        .filter(Boolean)
+        .join(' - ');
+
+const resolvedImage = {
+  src: new URL(image.src, Astro.site).toString(),
+  alt: image.alt,
+};
+---
+
+<!-- High Priority Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<!-- <title set:html={smartypants(title, 1)} /> -->
+<title>{title}</title>
+<meta name="generator" content={Astro.generator} />
+<meta name="theme-color" content="#557EFB" />
+
+<!-- Font preloads -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+  rel="stylesheet"
+/>
+
+<!-- favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+<meta name="theme-color" content="#ffffff" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="mask-icon" href="/favicon.svg" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<!-- Low Priority Global Metadata -->
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+<SEO
+  name={siteInfo.name}
+  title={title}
+  description={description}
+  image={resolvedImage}
+  twitter={{ handle: twitterHandle }}
+  og={{ type: pageType }}
+  canonicalURL={canonicalURL}
+/>

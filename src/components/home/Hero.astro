@@ -1,0 +1,45 @@
+---
+import { Image } from 'astro:assets';
+import OpenToHireModal from '../OpenToHire/OpenToHireModal';
+import profileImg from '../../assets/myProfile.jpg';
+---
+
+<div
+  class="flex flex-col items-center justify-center gap-10 py-[50px] md:flex-row md:gap-20 md:py-[150px]"
+>
+  <Image
+    src={profileImg}
+    alt=""
+    loading={'eager'}
+    class="w-full max-w-[300px] rounded-full object-cover md:w-6/12"
+    height={300}
+    width={300}
+  />
+
+  <div class="w-full text-center md:w-[50%] md:text-left">
+    <h1 class="title-color text-4xl font-bold md:text-5xl">Yasowant Nayak</h1>
+    <p class="title-color mt-2 font-inter text-lg font-[500] md:text-lg">
+      Software Developer
+    </p>
+    <p class="p-color mt-2 text-base">
+      I specialize in full-stack JavaScript development and have a proven track
+      record of designing scalable and maintainable digital solutions. I am
+      passionate about leveraging modern technologies to create innovative and
+      efficient applications. Currently, I'm working on CPQ (Configure, Price,
+      Quote) solutions at <a
+        href="https://www.dealdox.io/"
+        class="link font-semibold dark:font-normal"
+        target="_blank">DealDox</a
+      >.
+    </p>
+
+    <div class="mt-1 block"></div>
+
+    <div class="mt-5 flex justify-center gap-3 md:justify-start">
+      <a href="#works">
+        <button class="primary-btn" type="button"> See My Works </button>
+      </a>
+      <OpenToHireModal client:load />
+    </div>
+  </div>
+</div>
