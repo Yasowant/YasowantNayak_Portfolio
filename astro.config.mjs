@@ -20,7 +20,7 @@ const siteURL =
 
 // https://astro.build/config
 export default defineConfig({
-  site: siteURL || '',
+  site: siteURL || 'https://yasowant-nayak-portfolio.vercel.app',
   legacy: {
     collections: true,
   },

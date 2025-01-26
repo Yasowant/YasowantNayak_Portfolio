@@ -1,26 +1,22 @@
-My Personal Website
-Live Preview: yasowant-nayak-portfolio.vercel.app
+Live Preview:https://shaifarfan.com/
+Dev Preview:https://dev--shaifarfan.netlify.app/
 
-**Live Preview:https://yasowant-nayak-portfolio.vercel.app/**
-<br>
-
-- Blog posts with MDX
-- code syntax highlighter (shiki)
-
+Blog posts with MDX
+code syntax highlighter (shiki)
 options for code highlighting:
 
-- prism
-- shiki ✅
-- expressive code
-
+prism
+shiki ✅
+expressive code
 TODO:
 
-- [x] Add a blog
-- Blog Feature
-  - [x] Draft blog setup
-  - [x] Add estimated reading time
-  - [ ] Add comments
-  - [x] Tags
-  - [ ] search
-  - [ ] pagination
-- [ ] 404 page
+Add a blog
+Blog Feature
+Draft blog setup
+YouTube card
+Add estimated reading time
+Add comments
+Tags
+search
+pagination
+404 page
