@@ -3,6 +3,7 @@ import Works from '~/components/home/Works.astro';
 import About from '../components/home/Hero.astro';
 import Layout from '../layout/Layout.astro';
 import { isNetlifyContextProd } from '../utils/isNetlifyContextProd';
+import Skills from '~/components/home/Skills';
 ---
 
 <Layout>
@@ -10,6 +11,8 @@ import { isNetlifyContextProd } from '../utils/isNetlifyContextProd';
     <div class="layout-container">
       <About />
     </div>
+
+    <Skills />
     <Works />
   </div>
 </Layout>
